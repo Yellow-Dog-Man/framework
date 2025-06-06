@@ -16,7 +16,7 @@ namespace Cloudtoid
             { Method.Options.Method, Method.Options },
             { Method.Head.Method, Method.Head },
             { Method.Delete.Method, Method.Delete },
-            { Method.Patch.Method, Method.Patch },
+            { "PATCH", new("PATCH") },
             { Method.Put.Method, Method.Put },
             { Method.Trace.Method, Method.Trace },
         };

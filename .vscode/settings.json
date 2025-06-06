@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
         "Cloudtoid"
-    ]
+    ],
+    "dotnet.testWindow.skipTargetFrameworkCompatibilityCheck": true
 }

@@ -82,11 +82,19 @@ namespace Cloudtoid
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ISet<T> AsSet<T>(this IEnumerable<T> items)
+#if NET9_0_OR_GREATER
             => items as ISet<T> ?? items.ToHashSet();
+#else
+            => items as ISet<T> ?? new HashSet<T>(items);
+#endif
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ISet<T> AsSet<T>(this IEnumerable<T> items, IEqualityComparer<T> comparer)
+#if NET9_0_OR_GREATER
             => items as ISet<T> ?? items.ToHashSet(comparer);
+#else
+            => items as ISet<T> ?? new HashSet<T>(items, comparer);
+#endif
 
         public static void AddRange<TKey, TValue>(
             this ICollection<KeyValuePair<TKey, TValue>> destination,

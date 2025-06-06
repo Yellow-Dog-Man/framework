@@ -18,8 +18,14 @@ namespace Cloudtoid.Framework
         /// </summary>
         public static string Base64UrlEncode(this Guid value)
         {
+#if NET9_0_OR_GREATER
             Span<byte> bytes = stackalloc byte[16];
             value.TryWriteBytes(bytes);
+#else
+            Span<Guid> guid = stackalloc Guid[1];
+            guid[0] = value;
+            Span<byte> bytes = MemoryMarshal.Cast<Guid, byte>(guid);
+#endif
             Span<char> str = stackalloc char[22];
 
             str[0] = Base64UrlChars[bytes[0] >> 2];
@@ -50,7 +56,11 @@ namespace Cloudtoid.Framework
             str[20] = Base64UrlChars[bytes[15] >> 2];
             str[21] = Base64UrlChars[bytes[15] & 0b_0000_0011];
 
+#if NET9_0_OR_GREATER
             return new string(str);
+#else
+            return str.ToString();
+#endif
         }
 
         /// <summary>
@@ -59,8 +69,14 @@ namespace Cloudtoid.Framework
         /// </summary>
         public static string Base41UrlEncode(this Guid value)
         {
+#if NET9_0_OR_GREATER
             Span<byte> bytes = stackalloc byte[16];
             value.TryWriteBytes(bytes);
+#else
+            Span<Guid> guid = stackalloc Guid[1];
+            guid[0] = value;
+            Span<byte> bytes = MemoryMarshal.Cast<Guid, byte>(guid);
+#endif
             Span<ulong> ulongs = MemoryMarshal.Cast<byte, ulong>(bytes);
             Span<char> str = stackalloc char[24];
 
@@ -78,7 +94,11 @@ namespace Cloudtoid.Framework
                 ul /= 41;
             }
 
+#if NET9_0_OR_GREATER
             return new string(str);
+#else
+            return str.ToString();
+#endif
         }
     }
 }

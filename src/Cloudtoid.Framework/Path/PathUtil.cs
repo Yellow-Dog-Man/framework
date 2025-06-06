@@ -61,7 +61,11 @@ namespace Cloudtoid
         /// </summary>
         public static string ShortenPath(string path)
         {
+#if NET9_0_OR_GREATER
             var relativePath = Path.GetRelativePath(Environment.CurrentDirectory, path);
+#else
+            var relativePath = PathNetCore.GetRelativePath(Environment.CurrentDirectory, path);
+#endif
             return relativePath.Length < path.Length ? relativePath : path;
         }
     }

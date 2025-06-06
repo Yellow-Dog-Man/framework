@@ -91,7 +91,11 @@ namespace Cloudtoid
             return n;
         }
 
+#if NET9_0_OR_GREATER
         public override int Read(Span<char> buffer)
+#else
+        public int Read(Span<char> buffer)
+#endif
         {
             CheckDisposed();
 
@@ -108,7 +112,11 @@ namespace Cloudtoid
             return n;
         }
 
+#if NET9_0_OR_GREATER
         public override int ReadBlock(Span<char> buffer)
+#else
+        public int ReadBlock(Span<char> buffer)
+#endif
             => Read(buffer);
 
         public override string ReadToEnd()
@@ -179,7 +187,11 @@ namespace Cloudtoid
             return Task.FromResult(ReadBlock(buffer, index, count));
         }
 
+#if NET9_0_OR_GREATER
         public override ValueTask<int> ReadBlockAsync(Memory<char> buffer, CancellationToken cancellationToken)
+#else
+        public ValueTask<int> ReadBlockAsync(Memory<char> buffer, CancellationToken cancellationToken)
+#endif
         {
             return cancellationToken.IsCancellationRequested
                 ? new ValueTask<int>(Task.FromCanceled<int>(cancellationToken))
@@ -189,7 +201,11 @@ namespace Cloudtoid
         public override Task<int> ReadAsync(char[] buffer, int index, int count)
             => Task.FromResult(Read(buffer, index, count));
 
+#if NET9_0_OR_GREATER
         public override ValueTask<int> ReadAsync(Memory<char> buffer, CancellationToken cancellationToken)
+#else
+        public ValueTask<int> ReadAsync(Memory<char> buffer, CancellationToken cancellationToken)
+#endif
         {
             return cancellationToken.IsCancellationRequested
                 ? new ValueTask<int>(Task.FromCanceled<int>(cancellationToken))

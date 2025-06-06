@@ -324,7 +324,11 @@ namespace Cloudtoid.Framework.UnitTests
             v.GetHashCode().Should().NotBe(HashUtil.NullHashCode);
 
             v = new ReadOnlyValueList<string?>("a");
+#if NET9_0_OR_GREATER
             v.GetHashCode().Should().Be("a".GetHashCode(StringComparison.Ordinal));
+#else
+            v.GetHashCode().Should().Be(StringComparer.Ordinal.GetHashCode("a"));
+#endif
             ReadOnlyValueList<string?>.Empty.GetHashCode().Should().Be(new HashCode().ToHashCode());
 
             new ReadOnlyValueList<string?>(default(string)).GetHashCode().Should().Be(HashUtil.NullHashCode);

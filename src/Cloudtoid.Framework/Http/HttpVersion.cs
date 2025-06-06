@@ -9,7 +9,7 @@ namespace Cloudtoid
     {
         public static readonly Version Version10 = System.Net.HttpVersion.Version10;
         public static readonly Version Version11 = System.Net.HttpVersion.Version11;
-        public static readonly Version Version20 = System.Net.HttpVersion.Version20;
+        public static readonly Version Version20 = new Version(2, 0);
         public static readonly Version Version30 = new Version(3, 0);
         public static readonly Version Version40 = new Version(4, 0);
         public static readonly Version Version50 = new Version(5, 0);
@@ -34,10 +34,10 @@ namespace Cloudtoid
             if (string.IsNullOrEmpty(protocol))
                 return null;
 
-            if (HttpVersionMap.TryGetValue(protocol, out var version))
+            if (HttpVersionMap.TryGetValue(protocol!, out var version))
                 return version;
 
-            var slash = protocol.LastIndexOf('/');
+            var slash = protocol!.LastIndexOf('/');
             if (slash != -1)
                 protocol = protocol.Substring(slash + 1);
 

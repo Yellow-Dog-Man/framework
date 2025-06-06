@@ -137,7 +137,11 @@ namespace Cloudtoid
         /// <param name="str">The original string.</param>
         /// <param name="value">The char to seek.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET9_0_OR_GREATER
         public static int IndexOfOrdinal(this string str, char value) => CheckValue(str, nameof(str)).IndexOf(value, StringComparison.Ordinal);
+#else
+        public static int IndexOfOrdinal(this string str, char value) => CheckValue(str, nameof(str)).IndexOf(value);
+#endif
 
         /// <summary>
         /// Reports the zero-based index of the first occurrence of the specified string in the current <see cref="string"/> object. The search uses <see cref="StringComparison.Ordinal"/> comparison.
@@ -155,12 +159,20 @@ namespace Cloudtoid
         /// <param name="oldValue">The string to be replaced.</param>
         /// <param name="newValue">The string to replace all occurrences of oldValue.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET9_0_OR_GREATER
         public static string ReplaceOrdinal(this string str, string oldValue, string newValue) => CheckValue(str, nameof(str)).Replace(oldValue, newValue, StringComparison.Ordinal);
+#else
+        public static string ReplaceOrdinal(this string str, string oldValue, string newValue) => CheckValue(str, nameof(str)).Replace(oldValue, newValue);
+#endif
 
         /// <summary>
         /// Returns the hash code for this string using <see cref="StringComparison.InvariantCulture"/>.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET9_0_OR_GREATER
         public static int GetHashCodeInvariant(this string str) => CheckValue(str, nameof(str)).GetHashCode(StringComparison.InvariantCulture);
+#else
+        public static int GetHashCodeInvariant(this string str) => CheckValue(str, nameof(str)).GetHashCode();
+#endif
     }
 }
