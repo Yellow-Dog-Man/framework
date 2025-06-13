@@ -2,19 +2,19 @@
 
   <!-- NuGet Packaging -->
   <PropertyGroup>
-    <PackageId>Cloudtoid.Framework</PackageId>
-    <Title>Cloudtoid.Framework</Title>
-    <Authors>pedram@rezaei.us</Authors>
-    <Company>cloudtoid</Company>
+    <PackageId>YellowDogMan.Cloudtoid.Framework</PackageId>
+    <Title>YellowDogMan.Cloudtoid.Framework</Title>
+    <Authors>pedram@rezaei.us;YellowDogManStudios</Authors>
+    <Company>YellowDogMan Studios</Company>
     <PackageDescription>This is a common set of utility classes that is shared across cloudtoid</PackageDescription>
     <Copyright>Copyright (c) Cloudtoid</Copyright>
-    <RepositoryUrl>https://github.com/cloudtoid/framework/</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/cloudtoid/framework/blob/master/README.md</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Yellow-Dog-Man/framework</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Yellow-Dog-Man/framework/blob/master/README.md</PackageProjectUrl>
     <IsPackable>true</IsPackable>
     <PackageTags>utilities;framework;utility;framework</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <VersionSuffix Condition=" '$(VersionSuffix)'=='' ">0</VersionSuffix>
-    <Version>1.0.$(VersionSuffix)</Version>
+    <Version>1.0.$(VersionSuffix)-ydm</Version>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,8 +1,13 @@
 name: publish
 
 on:
-  push:
-    branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Assembly Version'
+        required: true
+  release:
+    types: [published]
   
 jobs:
   build:
