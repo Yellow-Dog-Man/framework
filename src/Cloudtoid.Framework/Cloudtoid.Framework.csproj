@@ -15,6 +15,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <VersionSuffix Condition=" '$(VersionSuffix)'=='' ">0</VersionSuffix>
     <Version>1.0.$(VersionSuffix)-ydm</Version>
+    <AssemblyName>YellowDogMan.Cloudtoid.Framework</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
