@@ -11,6 +11,8 @@ on:
   
 jobs:
   build:
+    env:
+      VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
 
     runs-on: ubuntu-latest
 
